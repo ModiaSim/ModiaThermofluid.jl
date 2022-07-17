@@ -1,5 +1,5 @@
 """
-    module ModiaThermoFluid.Interfaces
+    include all ModiaThermoFluid.Interfaces
 
 Subset of ModiaThermoFluid containing the physical Interfaces of thermofluid components.
 
@@ -8,8 +8,4 @@ Subset of ModiaThermoFluid containing the physical Interfaces of thermofluid com
 * License: 3-Clause BSD License
 
 """
-module Interfaces
 
-using Modia
- 
-end

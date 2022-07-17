@@ -11,8 +11,15 @@ ThermoFluid library of [Modia](https://github.com/ModiaSim/Modia.jl) component m
 """
 module ModiaThermofluid
 
-
 const path = dirname(dirname(@__FILE__))   # Absolute path of package directory
 
+using Modia
+using ModiaMedia
+
+# Include sub-modules
+folderNames = ["Interfaces",]
+for folder in folderNames
+    include(joinpath(folder, "include_all.jl"))
+end
 
 end
