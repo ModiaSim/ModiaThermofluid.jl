@@ -9,3 +9,5 @@ Subset of ModiaThermoFluid containing the physical Interfaces of thermofluid com
 
 """
 
+include("Inlet.jl")
+include("Outlet.jl")
