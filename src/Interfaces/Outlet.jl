@@ -14,8 +14,4 @@ Therefore the state information of this connector is an output.
 
 """
 
-Outlet = Model(
-    r = potential | info"inertial pressure",
-    w = flow | info"mass flow rate",
-    state = output | info"thermodynamic state assuming steady mass flow pressure" #TODO: Need to find out later whether this input needs to be refined
-)
+Outlet = FlowConnector | StateOutput
