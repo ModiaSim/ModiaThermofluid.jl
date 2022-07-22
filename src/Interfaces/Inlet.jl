@@ -4,7 +4,7 @@
 Physical Interfaces of thermofluid components representing fluid inlet.
 
 ## Directed flow connector for fluids.
-This connector assumes a positive mass-flow `w` - entering the component by the inlet. 
+This connector assumes a positive mass-flow `ṁ` - entering the component by the inlet. 
 Therefore the state information of this connector is an input.
 
 

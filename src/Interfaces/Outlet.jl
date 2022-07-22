@@ -4,7 +4,7 @@
 Physical Interfaces of thermofluid components representing fluid outlet.
 
 ## Directed flow connector for fluids.
-This connector assumes a negative mass-flow `w` - leaving the component by the outlet. 
+This connector assumes a negative mass-flow `ṁ` - leaving the component by the outlet. 
 Therefore the state information of this connector is an output.
 
 

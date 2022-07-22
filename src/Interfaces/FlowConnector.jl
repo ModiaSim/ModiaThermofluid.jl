@@ -12,5 +12,5 @@ Acausal quantities necessary at the fluid connector of thermofluid components.
 
 FlowConnector = Model(
     r = potential | info"inertial pressure",
-    w = flow | info"mass flow rate"
+    ṁ = flow | info"mass flow rate"
 )
