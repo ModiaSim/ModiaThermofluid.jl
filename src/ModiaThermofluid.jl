@@ -17,7 +17,7 @@ using Modia
 using ModiaMedia
 
 # Include sub-modules
-folderNames = ["Interfaces",]
+folderNames = ["Interfaces", "Boundaries"]
 for folder in folderNames
     include(joinpath(folder, "include_all.jl"))
 end
