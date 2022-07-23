@@ -11,8 +11,11 @@ Creates thermodynamic state based on variable inputs.
 
 createState = Model(
     # Medium definition
-    mediumName = Par("SimpleAir", info="medium name as a string"),
-    medium = Var(info="medium instance"),
+    #mediumName = Par("SimpleAir", info="medium name as a string"),
+    # mediumName = "N2",
+    #medium = getMedium(mediumName),
+
+    medium = getMedium("N2"),
     state = Var(info="medium state"),
 
     # State parameters
@@ -22,7 +25,9 @@ createState = Model(
     h₀ = Par(start=0u"J", info = "specified state enthalpy of the medium"),
 
     equations = :[
-        medium = getMedium(mediumName)
         state = if setT; setState_pT(medium, p₀, T₀) else setState_pT(medium, p₀, h₀) end
     ]
 )
+
+mediumState = @instantiateModel(createState)
+simulate!(mediumState, stopTime=0.1)
