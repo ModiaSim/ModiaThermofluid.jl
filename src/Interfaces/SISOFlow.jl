@@ -42,13 +42,13 @@ SISOFlow = Model(
 
     # inlet state quantities
     pᵢₙ = Var(start=0u"Pa", info = "inlet (static) pressure"),
-    Tᵢₙ = Var(start=0u"J", info = "temperature of the medium at the inlet"),
+    Tᵢₙ = Var(start=0u"K", info = "temperature of the medium at the inlet"),
     hᵢₙ = Var(start=0u"J", info = "enthalpy of the medium at the inlet"),
     #Xiᵢₙ = Var(start=0u"1", info = "mass fraction of the medium at the inlet"),
 
     # outlet state quantities
     pₒᵤₜ = Var(start=0u"Pa", info = "outlet (static) pressure"),
-    Tₒᵤₜ = Var(start=0u"J", info = "enthalpy of the medium at the outlet"),
+    Tₒᵤₜ = Var(start=0u"k", info = "enthalpy of the medium at the outlet"),
     hₒᵤₜ = Var(start=0u"J", info = "enthalpy of the medium at the outlet"),
     #Xiₒᵤₜ = Var(start=0u"1", info = "mass fraction of the medium at the outlet"),
 
