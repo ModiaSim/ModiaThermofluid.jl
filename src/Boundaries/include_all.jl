@@ -9,7 +9,7 @@ Subset of ModiaThermoFluid containing the physical Boundaries of thermofluid sys
 
 """
 
-# include("CreateState.jl")
+include("CreateState.jl")
 # include("Source.jl")
 # include("Sink.jl")
 # include("TerminalSource.jl")
