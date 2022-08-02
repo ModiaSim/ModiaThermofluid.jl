@@ -8,6 +8,18 @@ Creates thermodynamic state based on variable inputs.
 * License: 3-Clause BSD License
 
 """
+module CreateState
+
+using Unitful
+using Modia
+using ModiaMedia
+
+const MediumState() = Var(size=(), hideResult=true)
+const Medium        = getMedium("N2")
+@inline useMedium() = Medium
+
+include("../../src/Boundaries/CreateState.jl")
+
 createState = Model(
     # Medium state definition
     state = MediumState(),
@@ -30,3 +42,16 @@ createState = Model(
         T = temperature(state)
     ]
 )
+
+myState = @instantiateModel(createState, unitless=true, logCode=true)
+simulate!(myState, stopTime = 10.0u"s", log=true, logEvaluatedParameters=true)
+
+showInfo(myState)  # print info about the result
+writeSignalTable("myState.json", myState, indent=2, log=true)
+
+@usingModiaPlot   # Use plot package defined with
+                  # ENV["SignalTablesPlotPackage"] = "XXX" or with 
+usePlotPackage("PyPlot")
+plot(myState, [("p", "h₀"); "T"], figure = 1)
+
+end
