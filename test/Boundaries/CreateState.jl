@@ -8,7 +8,7 @@ Creates thermodynamic state based on variable inputs.
 * License: 3-Clause BSD License
 
 """
-module CreateState
+module createState
 
 using Unitful
 using Modia
@@ -20,7 +20,7 @@ const Medium        = getMedium("N2")
 
 include("../../src/Boundaries/CreateState.jl")
 
-myState = @instantiateModel(createState, unitless=true, logCode=true)
+myState = @instantiateModel(CreateState, unitless=true, logCode=true)
 simulate!(myState, stopTime = 10.0u"s", log=true, logEvaluatedParameters=true)
 
 showInfo(myState)  # print info about the result

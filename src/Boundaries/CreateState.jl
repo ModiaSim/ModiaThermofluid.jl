@@ -8,7 +8,7 @@ Creates thermodynamic state based on variable inputs.
 * License: 3-Clause BSD License
 
 """
-createState = Model(
+CreateState = Model(
     # Medium state definition
     state = MediumState(),
 
