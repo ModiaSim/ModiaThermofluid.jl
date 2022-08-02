@@ -13,19 +13,33 @@ createState = Model(
     state = MediumState(),
 
     # State parameters
-    setT = Par(true, info = "If true, set state from temperature, else from enthalpy"),
-    # p₀ = Par(1e5u"Pa", info = "specified state steady-state pressure of the medium"),
-    # T₀ = Par(300u"K", info = "specified state temperature of the medium"),
-    # h₀ = Par(500e3u"J", info = "specified state enthalpy of the medium"),
-    p₀ = Par(1e5, info = "specified state steady-state pressure of the medium"),
-    T₀ = Par(300, info = "specified state temperature of the medium"),
-    h₀ = Par(500e3, info = "specified state enthalpy of the medium"),
+    # pressure
+    use_pᵢₙ = Par(false, info = "If true, expects pᵢₙ from input, else p₀"),
+    p₀ = Par(1e5, info = "specified state steady-state pressure of the medium - as parameter"),
+    pᵢₙ = input | Var(start=0u"Pa", info = "specified state steady-state pressure of the medium - as input"),
+    pₛ = Var(info = "specified state steady-state pressure of the medium"),
 
-    p = Var(),
-    T = Var(),
+    # temperature
+    setT = Par(true, info = "If true, set state from temperature, else from enthalpy"),
+    use_Tᵢₙ = Par(false, info = "If true, expects Tᵢₙ from input, else T₀"),
+    T₀ = Par(300, info = "specified state temperature of the medium - as parameter"),
+    Tᵢₙ = input | Var(start=0u"K", info = "specified state temperature of the medium - as input"),
+    Tₛ = Var(info = "specified state temperature of the medium"),
+
+    # enthalpy
+    use_hᵢₙ = Par(false, info = "If true, expects hᵢₙ from input, else h₀"),
+    h₀ = Par(500e3, info = "specified state enthalpy of the medium - as parameter"),
+    hᵢₙ = input | Var(start=0u"J", info = "specified state enthalpy of the medium - as input"),
+    hₛ = Var(info = "specified state enthalpy of the medium"),
+
+    p = Var(info = "steady state pressure of the medium"),
+    T = Var(info = "temperature of the medium"),
 
     equations = :[
-        state = if setT; setState_pT(useMedium(), p₀, T₀) else setState_pT(useMedium(), p₀, h₀) end
+        pₛ = if use_pᵢₙ; pᵢₙ else p₀ end
+        Tₛ = if use_Tᵢₙ; Tᵢₙ else T₀ end
+        hₛ = if use_hᵢₙ; hᵢₙ else h₀ end
+        state = if setT; setState_pT(useMedium(), pₛ, Tₛ) else setState_pT(useMedium(), pₛ, hₛ) end
         p = pressure(state)
         T = temperature(state)
     ]
